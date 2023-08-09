@@ -8,7 +8,13 @@ async function obtenerProductos() {
 
   data.forEach((e) => {
     const productoDiv = document.createElement("div");
-    productoDiv.classList.add("col","col-md-6", "col-xl-4", "col-xxl-3", "mb-4");
+    productoDiv.classList.add(
+      "col",
+      "col-md-6",
+      "col-xl-4",
+      "col-xxl-3",
+      "mb-4"
+    );
     productoDiv.innerHTML = `
         <div class="col">
             <div class="card" style="width: 25rem;">
@@ -23,11 +29,31 @@ async function obtenerProductos() {
             </div>
         </div>
       `;
-
-      container.appendChild(productoDiv);
+    let botonCarrito = productoDiv.querySelector(".btn-personalizado");
+    botonCarrito.addEventListener("click", () => {
+      const productoEnCarrito =
+        JSON.parse(localStorage.getItem("ProductoEnCarrito")) || [];
+      productoEnCarrito.push(e);
+      localStorage.setItem(
+        "productoEnCarrito",
+        JSON.stringify(productoEnCarrito)
+      );
+      Toastify({
+        text: "Producto agregado al Carrito",
+        className: "info",
+        gravity: "bottom",
+        position: "right",
+        duration: 1500,
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+      }).showToast();
     });
 
-    mainElement.appendChild(container);
+    container.appendChild(productoDiv);
+  });
+
+  mainElement.appendChild(container);
 }
 
 obtenerProductos();
