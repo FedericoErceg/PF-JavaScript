@@ -32,29 +32,32 @@ async function obtenerProductos() {
     let botonCarrito = productoDiv.querySelector(".btn-personalizado");
     botonCarrito.addEventListener("click", () => {
       const productoEnCarrito =
-        JSON.parse(localStorage.getItem("ProductoEnCarrito")) || [];
+        JSON.parse(localStorage.getItem("productoEnCarrito")) || [];
 
       const productoExistente = productoEnCarrito.find(
         (producto) => producto.id === e.id
       );
 
       if (!productoExistente) {
-        productoEnCarrito.push(e);
-        localStorage.setItem(
-          "productoEnCarrito",
-          JSON.stringify(productoEnCarrito)
-        );
-        Toastify({
-          text: "Producto agregado al Carrito",
-          className: "info",
-          gravity: "bottom",
-          position: "right",
-          duration: 1500,
-          style: {
-            background: "linear-gradient(to right, #00b09b, #96c93d)",
-          },
-        }).showToast();
+        productoEnCarrito.push({...e, cantidad: 1});
+      } else{
+        productoExistente.cantidad++;
       }
+      localStorage.setItem(
+        "productoEnCarrito",
+        JSON.stringify(productoEnCarrito)
+      );
+
+      Toastify({
+        text: "Producto agregado al Carrito",
+        className: "info",
+        gravity: "bottom",
+        position: "right",
+        duration: 1500,
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+      }).showToast();
     });
 
     container.appendChild(productoDiv);
