@@ -1,0 +1,36 @@
+function login() {
+  let usuarioSesion = document.getElementById('loginUser');
+  let contraseñaSesion = document.getElementById('loginPassword');
+  let btnSesion = docuemtn.getElementById('btnInicioDeSesion')
+
+  btnSesion.onclick() = () => {
+    const newUser = new Usuario(
+      registroNombre.value,
+      registroApellido.value,
+      registroUsuario.value,
+      registroEmail.value,
+      registroContraseña.value
+    );
+
+    const usuariosRegistrados =
+      JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    const usuarioRegistrado = usuariosRegistrados.find(
+      (user) => usuarioSesion === user.usuario
+    );
+    const contraseñaRegistrada = usuariosRegistrados.find((user) => {
+      contraseñaSesion === user.contraseña
+    })
+
+    if(usuarioRegistrado && contraseñaRegistrada){
+      console.log('Inicio de secion correcto');
+    } else{
+      console.log('fallo en iniciar la secion')
+    }
+    return false;
+  }
+}
+login();
+
+
+window.location.href = "../index.html
