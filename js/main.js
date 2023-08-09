@@ -33,21 +33,28 @@ async function obtenerProductos() {
     botonCarrito.addEventListener("click", () => {
       const productoEnCarrito =
         JSON.parse(localStorage.getItem("ProductoEnCarrito")) || [];
-      productoEnCarrito.push(e);
-      localStorage.setItem(
-        "productoEnCarrito",
-        JSON.stringify(productoEnCarrito)
+
+      const productoExistente = productoEnCarrito.find(
+        (producto) => producto.id === e.id
       );
-      Toastify({
-        text: "Producto agregado al Carrito",
-        className: "info",
-        gravity: "bottom",
-        position: "right",
-        duration: 1500,
-        style: {
-          background: "linear-gradient(to right, #00b09b, #96c93d)",
-        },
-      }).showToast();
+
+      if (!productoExistente) {
+        productoEnCarrito.push(e);
+        localStorage.setItem(
+          "productoEnCarrito",
+          JSON.stringify(productoEnCarrito)
+        );
+        Toastify({
+          text: "Producto agregado al Carrito",
+          className: "info",
+          gravity: "bottom",
+          position: "right",
+          duration: 1500,
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          },
+        }).showToast();
+      }
     });
 
     container.appendChild(productoDiv);
