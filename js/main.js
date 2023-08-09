@@ -17,7 +17,7 @@ async function obtenerProductos() {
                     <h5 class="card-title text-center p-1">${e.nombre}</h5>
                     <p class="card-text text-center">${e.descripcion}</p>
                     <div class="d-flex justify-content-center">
-                        <button id="${e.id}" class="btn btn-warning" tipy="button">Agregar al Carrito</button>
+                        <button id="${e.id}" class="btn btn-personalizado" tipy="button">Agregar al Carrito</button>
                     </div>
                 </div>
             </div>
