@@ -122,7 +122,7 @@ async function obtenerProductos() {
         "productoEnCarrito",
         JSON.stringify(productoEnCarrito)
       );
-      localStorage.setItem("precioTotalCarrito", `$${precioTotal}`);
+      localStorage.setItem("precioTotalCarrito", precioTotal);
 
 
       Toastify({
