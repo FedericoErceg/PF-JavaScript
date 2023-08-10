@@ -26,3 +26,25 @@ body{
     background-color: #E5F9E0;
     border: rgb(224, 221, 221) solid 0.5px;
 }
+
+#menuDesplegable {
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    opacity: 0.8;
+    border: 1px solid #ddd;
+    padding: 8px 0;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 40px;
+    display: none;
+}
+#menuDesplegable li {
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+#menuDesplegable li:hover {
+    background-color: #f1f1f1;
+}
+  
