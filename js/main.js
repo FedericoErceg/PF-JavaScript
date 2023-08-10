@@ -52,11 +52,14 @@ async function obtenerProductos() {
       } else {
         productoExistente.cantidad++;
       }
+      const precioTotal = productoEnCarrito.reduce((total, producto) => total + producto.precio * producto.cantidad, 0);
 
       localStorage.setItem(
         "productoEnCarrito",
         JSON.stringify(productoEnCarrito)
       );
+
+      localStorage.setItem("precioTotalCarrito", `$${precioTotal}`);
 
       Toastify({
         text: "Producto agregado al Carrito",
@@ -90,6 +93,7 @@ async function obtenerProductos() {
                 <div class="card-body">
                     <h5 class="card-title text-center p-1">${e.nombre}</h5>
                     <p class="card-text text-center">${e.descripcion}</p>
+                    <h6 class="text-center pb-1"> Precio: $${e.precio} x unidad </h6>
                     <div class="d-flex justify-content-center">
                         <button id="${e.id}" class="btn btn-personalizado" tipy="button">Agregar al Carrito</button>
                     </div>
@@ -111,10 +115,15 @@ async function obtenerProductos() {
       } else {
         productoExistente.cantidad++;
       }
+
+      const precioTotal = productoEnCarrito.reduce((total, producto) => total + producto.precio * producto.cantidad, 0);
+
       localStorage.setItem(
         "productoEnCarrito",
         JSON.stringify(productoEnCarrito)
       );
+      localStorage.setItem("precioTotalCarrito", `$${precioTotal}`);
+
 
       Toastify({
         text: "Producto agregado al Carrito",
