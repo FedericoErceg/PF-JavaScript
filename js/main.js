@@ -6,7 +6,6 @@ async function obtenerProductos() {
   let barraBusqueda = document.getElementById("barraDeBusqueda");
   let menuDesplegable = document.getElementById("menuDesplegable");
 
-
   function buscadorInput() {
     let buscador = barraBusqueda.value.toLowerCase();
     let resultadoBusqueda = data.filter((prod) => {
@@ -34,7 +33,6 @@ async function obtenerProductos() {
     });
   }
   barraBusqueda.addEventListener("input", buscadorInput);
-
 
   menuDesplegable.addEventListener("click", (event) => {
     const nombreProductoSeleccionado = event.target.textContent;
@@ -72,7 +70,6 @@ async function obtenerProductos() {
       }).showToast();
     }
   });
-
 
   const container = document.createElement("div");
   container.classList.add("row");
