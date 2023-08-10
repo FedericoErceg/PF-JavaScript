@@ -15,8 +15,8 @@ ProductosDelCarrito.forEach((e) => {
         <div class="mb-2">
             <h5 class="pb-2">${e.nombre} </h5>
             <img class="img-personalizada" src="${e.imagen}" alt="Producto">
-            <h6 class="pt-3">$${e.precio} x unidad </h6>
-            <h6 class="ps-2">cantidad: ${e.cantidad} </h6>
+            <h6 class="ps-2" id="cantidad${e.id}">cantidad: ${e.cantidad}</h6>
+    <h6 class="ps-2" id="precio${e.id}">$${e.precio * e.cantidad}</h6>
         </div>
         <div class="">
             <button id="prod${e.id}Mas" class="btn btn-carrito" type="button">
@@ -36,15 +36,19 @@ ProductosDelCarrito.forEach((e) => {
   `;
   const botonMas = productoDiv.querySelector(`#prod${e.id}Mas`);
   const botonMenos = productoDiv.querySelector(`#prod${e.id}Menos`);
+  const cantidadElemento = productoDiv.querySelector(`#cantidad${e.id}`);
+  const precioProductoElemento = productoDiv.querySelector(`#precio${e.id}`);
 
   botonMas.addEventListener("click", () => {
     e.cantidad++;
+    actualizarCantidadYTotalDOM(e, cantidadElemento, precioProductoElemento);
     actualizarLocalStorageYDom();
     actualizarTotal();
   });
   botonMenos.addEventListener("click", () => {
     if (e.cantidad > 1) {
       e.cantidad--;
+      actualizarCantidadYTotalDOM(e, cantidadElemento, precioProductoElemento);
       actualizarLocalStorageYDom();
       actualizarTotal();
     }
@@ -63,5 +67,15 @@ function actualizarTotal() {
     0
   );
   localStorage.setItem("precioTotalCarrito", `${nuevoTotal}`);
+}
+function actualizarCantidadYTotalDOM(
+  producto,
+  cantidadElemento,
+  precioProductoElemento
+) {
+  cantidadElemento.textContent = `cantidad: ${producto.cantidad}`;
+  precioProductoElemento.textContent = `$${
+    producto.precio * producto.cantidad
+  }`;
 }
 mainElement.appendChild(container);
