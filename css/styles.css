@@ -67,9 +67,6 @@ body{
 #btn-carrito:hover{
     background-color: #d5e8d1;
 }
-.btn-sumar{
-    
-}
 .bi-cart-dash, .bi-cart-plus{
     position: relative;
     right: 1px;
