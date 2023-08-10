@@ -79,3 +79,32 @@ function actualizarCantidadYTotalDOM(
   }`;
 }
 mainElement.appendChild(container);
+
+function btnFianlizaCompra(){
+  let container = document.createElement("div");
+  container.className = "row"
+  container.innerHTML = `
+  <div class="col d-flex justify-content-center">
+    <button id="btnFinal" class="btn btn-personalizado">Finalizar Compra</button>
+  </div>
+  `
+  mainElement.appendChild(container)
+
+  const btnFinCompra = container.querySelector("#btnFinal");
+  btnFinCompra.addEventListener('click', () => {
+    if(ProductosDelCarrito.length > 0){
+      swal.fire({
+        title: "Compra finalizada Exitosamente",
+        text: `el total de su compra es $${precioTotal}`,
+        icon: "success",
+      })
+    } else{
+      swal.fire({
+        title: "no hay productos en el carrito",
+        text: "Debe de tener almenos un producto en el carrito de compras",
+        icon: "error",
+      })
+    }
+  })
+}
+btnFianlizaCompra();
