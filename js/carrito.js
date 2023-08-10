@@ -13,7 +13,7 @@ ProductosDelCarrito.forEach((e) => {
         <div class="mb-2">
             <h5 class="pb-2">${e.nombre} </h5>
             <img class="img-personalizada" src="${e.imagen}" alt="Producto">
-            <h6 class="pt-3">$${precioTotal} </h6>
+            <h6 class="pt-3">$${e.precio} x unidad </h6>
             <h6 class="ps-2">cantidad: ${e.cantidad} </h6>
         </div>
         <div class="">
